@@ -176,16 +176,7 @@ def expand_args(command):
         splitter = shlex.shlex(command)
         splitter.whitespace = '|'
         splitter.whitespace_split = True
-        command = []
-
-        while True:
-            token = splitter.get_token()
-            if token:
-                command.append(token)
-            else:
-                break
-
-        command = list(map(shlex.split, command))
+        command = map(shlex.split, tuple(splitter))
 
     return command
 
